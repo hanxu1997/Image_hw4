@@ -47,6 +47,7 @@ end
 % harmonic_mean_filter
 function output_img = harmonic_mean_filter(input_img, m, n)
     input_img = im2double(input_img);
+    % 分母为窗口内像素倒数求和
     output_img = m * n ./ filter2d(1./(input_img + eps),ones(m, n));
 end
 

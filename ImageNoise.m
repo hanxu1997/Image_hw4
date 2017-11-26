@@ -23,34 +23,30 @@ title('gaussian by mynoise');
 % ------------------2.3.2高斯噪声 算术均值滤波-----------------------------
 a2_result3 = myfilter(output_img2,'arithmetic', 3, 3);
 imwrite(a2_result3, '.\hw4_output\2.3.2_gaussian\arithmetic_3x3.png');
-
 a2_result5 = myfilter(output_img2,'arithmetic', 5, 5);
 imwrite(a2_result5, '.\hw4_output\2.3.2_gaussian\arithmetic_5x5.png');
-
 a2_result7 = myfilter(output_img2,'arithmetic', 7, 7);
-subplot(2,3,4);
-imshow(a2_result7);
-title('arithmetic 7x7');
 imwrite(a2_result7, '.\hw4_output\2.3.2_gaussian\arithmetic_7x7.png');
-
 a2_result9 = myfilter(output_img2,'arithmetic', 9, 9);
 imwrite(a2_result9, '.\hw4_output\2.3.2_gaussian\arithmetic_9x9.png');
+subplot(2,3,4);
+imshow(a2_result5);
+title('arithmetic 5x5');
 
 % -------------------------------------------------------------------------
 
 % ------------------2.3.2高斯噪声 几何均值滤波-----------------------------
 g2_result3 = myfilter(output_img2,'geometric', 3, 3);
 imwrite(g2_result3, '.\hw4_output\2.3.2_gaussian\geometric_3x3.png');
-
 g2_result5 = myfilter(output_img2,'geometric', 5, 5);
 imwrite(g2_result5, '.\hw4_output\2.3.2_gaussian\geometric_5x5.png');
 g2_result7 = myfilter(output_img2,'geometric', 7, 7);
-subplot(2,3,5);
-imshow(g2_result7);
-title('geometric 7x7');
 imwrite(g2_result7, '.\hw4_output\2.3.2_gaussian\geometric_7x7.png');
 g2_result9 = myfilter(output_img2,'geometric', 9, 9);
 imwrite(g2_result9, '.\hw4_output\2.3.2_gaussian\geometric_9x9.png');
+subplot(2,3,5);
+imshow(g2_result5);
+title('geometric 5x5');
 % -------------------------------------------------------------------------
 
 % ------------------2.3.2高斯噪声 中值滤波---------------------------------
@@ -63,8 +59,8 @@ imwrite(m2_result7, '.\hw4_output\2.3.2_gaussian\median_7x7.png');
 m2_result9 = myfilter(output_img2,'median', 9, 9);
 imwrite(m2_result9, '.\hw4_output\2.3.2_gaussian\median_9x9.png');
 subplot(2,3,6);
-imshow(m2_result7);
-title('median 7x7');
+imshow(m2_result5);
+title('median 5x5');
 % medfilt2测试
 % m_result = medfilt2(output_img2, [5 5], 'symmetric');
 % imwrite(m_result2, '.\hw4_output\2.3.2_gaussian\median_5x5_2.png');
@@ -76,7 +72,7 @@ figure('NumberTitle', 'off', 'Name', '2.3.3_salt');
 subplot(2,2,1);
 imshow(output_img3);
 title('0.2 salt noise');
-
+imwrite(output_img3, '.\hw4_output\2.3.3_salt\salt.png');
 % ------------------2.3.3盐噪声 调和均值滤波-------------------------------
 h3_result3 = myfilter(output_img3,'harmonic', 3, 3);
 imwrite(h3_result3, '.\hw4_output\2.3.3_salt\harmonic_3x3.png');
@@ -115,6 +111,7 @@ figure('NumberTitle', 'off', 'Name', '2.3.4_salt-and-pepper');
 subplot(2,3,1);
 imshow(output_img4);
 title('0.2 salt-and-pepper noise');
+imwrite(output_img4, '.\hw4_output\2.3.4_salt-and-pepper\salt-and-pepper.png');
 % ------------------2.3.4椒盐噪声 算术均值滤波-----------------------------
 a4_result3 = myfilter(output_img4,'arithmetic', 3, 3);
 imwrite(a4_result3, '.\hw4_output\2.3.4_salt-and-pepper\arithmetic_3x3.png');
