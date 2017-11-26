@@ -1,0 +1,96 @@
+
+<!-- saved from url=(0090)http://read.pudn.com/downloads115/sourcecode/graph/texture_mapping/486388/imnoise2.m__.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Gonzalez.rar imnoise2.m</title>
+<link href="./Gonzalez.rar imnoise2.m_files/read_style.css" type="text/css" rel="stylesheet"><link rel="preload" href="./Gonzalez.rar imnoise2.m_files/integrator.js.&#19979;&#36733;" as="script"><script src="./Gonzalez.rar imnoise2.m_files/ca-pub-8055710228382273.js.&#19979;&#36733;"></script><script type="text/javascript" src="./Gonzalez.rar imnoise2.m_files/integrator.js.&#19979;&#36733;"></script><link rel="preload" href="./Gonzalez.rar imnoise2.m_files/integrator.js(1).&#19979;&#36733;" as="script"><script type="text/javascript" src="./Gonzalez.rar imnoise2.m_files/integrator.js(1).&#19979;&#36733;"></script></head>
+<body cz-shortcut-listen="true">
+<p><a href="http://www.pudn.com/">www.pudn.com</a> &gt; <a href="http://www.pudn.com/downloads115/sourcecode/graph/texture_mapping/detail486388.html">Gonzalez.rar</a> &gt; imnoise2.m, change:2007-07-04,size:1713b</p><!-- saved from http://www.pudn.com -->
+<script src="./Gonzalez.rar imnoise2.m_files/gg_read1.js.&#19979;&#36733;"></script><form action="http://search.pudn.com/Read" method="get" target="_blank">
+
+&nbsp;<input maxlength="50" size="20" name="keyword">
+
+<input type="submit" value="Search codes"></form>
+
+<script type="text/javascript" src="./Gonzalez.rar imnoise2.m_files/show_ads.js.&#19979;&#36733;">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Gonzalez.rar imnoise2.m_files/saved_resource.html"></iframe></ins></ins>
+<br>
+<pre name="code" class="m">function R = imnoise2(type,M,N,a,b) 
+ 
+%  TYPE, a, b 
+%  'uniform' 
+%  'gaussian'        a is mean, b is standard deviation 
+%  'salt &amp; pepper'   Pa=a,Pb=b 
+%  'lognormal'       a is offset, b is shape parameter 
+%  'rayleight'        
+%  'exponential'      
+%  'erlang'           
+ 
+if nargin == 1 
+    a = 0; 
+    b = 1; 
+    M = 1; 
+    N = 1; 
+elseif nargin == 3 
+    a = 0; 
+    b = 1; 
+end 
+ 
+switch lower(type) 
+    case 'uniform' 
+        R = a + (b-a)*rand(M,N); 
+    case 'gaussian' 
+        R = a + b*randn(M,N); 
+    case 'salt &amp; pepper' 
+        if nargin &lt;= 3 
+            a = 0.05; b = 0.05; 
+        end 
+        if (a +b)&gt;1 
+            error('The sum Pa + Pb must not exceed 1.'); 
+        end 
+        R(1:M,1:N) = 0.5; 
+        X = rand(M,N); 
+        c = find(X &lt;= a); 
+        R(c) = 0; 
+        u = a + b; 
+        c = find(X &gt; a &amp; X &lt;= u); 
+        R(c) = 1; 
+    case 'lognormal' 
+        if nargin &lt;= 3 
+            a = 1; b = 0.25; 
+        end 
+        R = a*exp(b*randn(M,N)); 
+    case 'rayleigh' 
+        R = a + (-b*log(1-rand(M,N))).^0.5; 
+    case 'exponential' 
+        if nargin &lt;= 3 
+            a = 1; 
+        end 
+        if a &lt;= 0 
+            error('Parameter a must be positive for exponential type.'); 
+        end 
+        k = -1/a; 
+        R = k*log(1-rand(M,N)); 
+    case 'erlang' 
+        if nargin &lt;= 3 
+            a = 2; b = 5; 
+        end 
+        if (b ~= round(b) | b &lt;= 0) 
+            error('Param b must be a positive integer for Erlang'); 
+        end 
+        k = -1/a; 
+        R = zeros(M,N); 
+        for j = 1:b 
+            R = R + k*log(1 - rand(M,N)); 
+        end 
+    otherwise 
+        error('Unknown distribution type.'); 
+end 
+            </pre>
+<script src="./Gonzalez.rar imnoise2.m_files/gg_read2.js.&#19979;&#36733;"></script>
+<div id="Javascript.gg_div" class="gg_div" style="width: 728; height:90;" align="center">
+<script type="text/javascript" src="./Gonzalez.rar imnoise2.m_files/show_ads.js.&#19979;&#36733;">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Gonzalez.rar imnoise2.m_files/saved_resource(1).html"></iframe></ins></ins>
+</div>
+<br>
+<script src="./Gonzalez.rar imnoise2.m_files/stat.php" language="JavaScript" charset="gb2312"></script><script src="./Gonzalez.rar imnoise2.m_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1236358" target="_blank" title="&#31449;&#38271;&#32479;&#35745;"><img border="0" hspace="0" vspace="0" src="./Gonzalez.rar imnoise2.m_files/pic.gif"></a>
+
+</body></html>
