@@ -4,16 +4,16 @@ function output_img = myfilter(input_img, type, m, n, parameter)
 %   调和均值滤波器 harmonic_mean_filter
 %   谐波均值滤波器 contraharmonic_mean_filter
 %   几何均值滤波器 geometric_mean_filter
-%   中值滤波器 median_filter
-%   最大值滤波器 max_filter
-%   最小值滤波器 min_filter
+%   中值滤波器     median_filter
+%   最大值滤波器   max_filter
+%   最小值滤波器   min_filter
     % inputs.
     if nargin == 2
        m = 3; n = 3; Q = -1.5;
-    elseif nargin == 5
-       Q = parameter;
     elseif nargin == 4
        Q = -1.5;
+    elseif nargin == 5
+       Q = parameter;
     else 
        error('input error!');
     end
@@ -62,7 +62,7 @@ function output_img = geometric_mean_filter( input_img, m, n)
     input_img = im2double(input_img);
     warning('off');
     %Warning: Displaying real part of complex input. 
-    output_img = exp(imfilter(log(input_img), ones(m, n))).^(1 / m / n);
+    output_img = exp(filter2d(log(input_img), ones(m, n))).^(1 / (m * n));
 end
 
 

@@ -130,12 +130,13 @@ title('arithmetic 7x7');
 g4_result3 = myfilter(output_img4,'geometric', 3, 3);
 imwrite(g4_result3, '.\hw4_output\2.3.4_salt-and-pepper\geometric_3x3.png');
 g4_result5 = myfilter(output_img4,'geometric', 5, 5);
-imwrite(g2_result5, '.\hw4_output\2.3.4_salt-and-pepper\geometric_5x5.png');
-g4_result7 = myfilter(output_img4,'geometric', 7, 7);
-imwrite(g4_result7, '.\hw4_output\2.3.4_salt-and-pepper\geometric_7x7.png');
 subplot(2,3,3);
 imshow(g4_result5);
 title('geometric 5x5');
+imwrite(g4_result5, '.\hw4_output\2.3.4_salt-and-pepper\geometric_5x5.png');
+g4_result7 = myfilter(output_img4,'geometric', 7, 7);
+imwrite(g4_result7, '.\hw4_output\2.3.4_salt-and-pepper\geometric_7x7.png');
+
 % ------------------2.3.4½·ÑÎÔëÉù ×î´óÖµÂË²¨-------------------------------
 max4_result3 = myfilter(output_img4,'max', 3, 3);
 imwrite(max4_result3, '.\hw4_output\2.3.4_salt-and-pepper\max_3x3.png');

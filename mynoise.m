@@ -1,6 +1,7 @@
 function output_img = mynoise( input_img, type, a, b)
-%mynoise: ÊäÈëÍ¼Ïñ¼ÓÔëÉùºóÊä³ö
-%   Detailed explanation goes here
+% ÊäÈëÍ¼Ïñ¼ÓÔëÉùºóÊä³ö
+%   ¸ßË¹ÔëÉù a£º¾ùÖµ£¬b:·½²î
+%   ½·ÑÎÔëÉù a: ½·(0)ÔëÉù¸ÅÂÊ£¬b£ºÑÎ(1)ÔëÉù¸ÅÂÊ
     [M,N] = size(input_img);
     input_img = im2double(input_img);
     switch type
@@ -21,6 +22,7 @@ function output_img = mynoise( input_img, type, a, b)
             output_img(r(i),c(i)) = 0;
         end
         u = a + b;
+        % & ÊÊÓÃÓÚ¾ØÕóÔËËã
         [r,c] = find(sp_noise > a & sp_noise <= u);
         for i = 1:size(r) 
             output_img(r(i),c(i)) = 1;
