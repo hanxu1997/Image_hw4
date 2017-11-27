@@ -7,9 +7,9 @@ subplot(2,2,1);
 imshow(input_img);
 [M,N,C] = size(input_img);
 input_img = im2double(input_img);
-R1 = input_img(:,:,1);
-G1 = input_img(:,:,2);
-B1 = input_img(:,:,3);
+R = input_img(:,:,1);
+G = input_img(:,:,2);
+B = input_img(:,:,3);
 
 % =======================================================================================================
 % 2.4.3
@@ -18,10 +18,6 @@ B1 = input_img(:,:,3);
 % 3. 将处理后的结果转换到RGB色彩空间
 % -------------------------------------------------------------------------
 % 1. 将输入图片转到HSV色彩空间
-R = R1;
-G = G1;
-B = B1;
-
 H = double(zeros(M,N));
 S = zeros(M,N);
 I = zeros(M,N);
@@ -58,8 +54,7 @@ for x = 1:M
     for y = 1:N
         h = 2*pi*H(x,y);
         s = S(x,y);
-        i = I(x,y);
-        
+        i = I(x,y); 
         if h >= 0 && h < 2*pi/3
             B(x,y) = i*(1-s);
             R(x,y) = i*(1+(s*cos(h)/(cos(pi/3-h))));
