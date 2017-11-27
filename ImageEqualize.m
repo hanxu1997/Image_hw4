@@ -18,16 +18,24 @@ equalize_G1 = equalize_hist(G);
 equalize_B1 = equalize_hist(B);
 subplot(2,2,1);
 imshow(equalize_R1);
+title('equalize R1');
 subplot(2,2,2);
 imshow(equalize_G1);
+title('equalize G1');
 subplot(2,2,3);
 imshow(equalize_B1);
+title('equalize B1');
+imwrite(equalize_R1, '.\hw4_output\2.4.1_ImageEqualize\equalize_R1.png');
+imwrite(equalize_G1, '.\hw4_output\2.4.1_ImageEqualize\equalize_G1.png');
+imwrite(equalize_B1, '.\hw4_output\2.4.1_ImageEqualize\equalize_B1.png');
 % 2.将处理后的三通道重构成一张RGB图
 output_img1(:,:,1) = equalize_R1;
 output_img1(:,:,2) = equalize_G1;
 output_img1(:,:,3) = equalize_B1;
 subplot(2,2,4);
 imshow(output_img1);
+title('outputimg1');
+imwrite(output_img1, '.\hw4_output\2.4.1_ImageEqualize\output_img1.png');
 % =======================================================================================================
 % 2.4.2 
 % 1. 分别计算每一个通道的直方图
@@ -111,16 +119,20 @@ end
 figure('NumberTitle', 'off', 'Name', '2.4.2-3');
 subplot(2,2,1);
 imshow(equalize_R2);
+title('equalize R2');
 subplot(2,2,2);
 imshow(equalize_G2);
+title('equalize G2');
 subplot(2,2,3);
 imshow(equalize_B2);
+title('equalize B2');
 % 5. 再重构一张RGB图
 output_img2(:,:,1) = equalize_R2;
 output_img2(:,:,2) = equalize_G2;
 output_img2(:,:,3) = equalize_B2;
 subplot(2,2,4);
 imshow(output_img2);
+title('output img2');
 % =======================================================================================================
 % 2.4.3
 % 1. 将输入图片转到HSV色彩空间
@@ -131,7 +143,7 @@ imshow(output_img2);
 R = im2double(R);
 G = im2double(G);
 B = im2double(B);
-[M, N] = size(R);
+
 H = double(zeros(M,N));
 S = double(zeros(M,N));
 I = double(zeros(M,N));
@@ -156,7 +168,7 @@ for i = 1:M
 end
 % 2. 对强度（intensity）进行直方图均衡化
 figure('NumberTitle', 'off', 'Name', '2.4.3');
-I = im2uint8(I);
+
 
 subplot(2,2,1);
 bar(0:255,pr_256(I),'k');
@@ -211,14 +223,12 @@ for x = 1:M
     end
 end
 
-R = im2double(R);
-G = im2double(G);
-B = im2double(B);
+
 output_img3(:,:,1) = R;
 output_img3(:,:,2) = G;
 output_img3(:,:,3) = B;
 subplot(2,2,3);
-imshow(real(output_img3));
+imshow(output_img3);
 
 
 
